@@ -22,6 +22,7 @@
     margin-bottom: 30px;
   }
 
+  /* Gallery grid: 2 images per row */
   .gallery {
     display: flex;
     flex-wrap: wrap;
@@ -30,7 +31,7 @@
   }
 
   .gallery img {
-    max-width: 45%;  /* half browser width */
+    width: 48%;  /* 2 per row with small gap */
     height: auto;
     border: 2px solid #8a2be2;
     border-radius: 5px;
@@ -38,7 +39,7 @@
 
   @media (max-width: 800px) {
     .gallery img {
-      max-width: 90%; /* responsive on small screens */
+      width: 90%; /* responsive for small screens */
     }
   }
 </style>
@@ -49,7 +50,7 @@
 
 <div class="gallery">
   <img src="2026-01-13-06-04-48.jpg" alt="M51 Image 1">
-  <!-- Add more images inside this div -->
+  <!-- Add more images here -->
   <!-- <img src="another-image.jpg" alt="M51 Image 2"> -->
 </div>
 
