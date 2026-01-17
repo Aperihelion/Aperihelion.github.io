@@ -14,31 +14,33 @@
     color: white;
   }
 
-  .gradient-block {
-    display: inline-block;
+  /* Header and subtitle */
+  .header-block {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .header-block h1 {
+    font-weight: 900;
+    font-size: 3em;
+    margin: 0.2em 0;
     background: linear-gradient(to bottom, #8a2be2, #1e90ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    text-shadow:
-      0 0 8px rgba(138, 43, 226, 0.4),
-      0 0 12px rgba(30, 144, 255, 0.3);
+    text-shadow: 0 0 8px rgba(138,43,226,0.4), 0 0 12px rgba(30,144,255,0.3);
   }
 
-  h1 {
-    font-weight: 900;
-    font-size: 3em;
-    margin-bottom: 0.2em;
-  }
-
-  p {
+  .header-block p {
     font-weight: 500;
     font-size: 1.2em;
     max-width: 800px;
-    margin: 0 auto 2em;
+    margin: 0 auto 20px;
     line-height: 1.5em;
+    color: white;
   }
 
+  /* Search bar */
   #search {
     padding: 10px 15px;
     font-size: 1em;
@@ -47,7 +49,8 @@
     background-color: #111;
     color: #8a2be2;
     text-shadow: 0 0 5px #8a2be2;
-    margin-bottom: 30px;
+    margin: 0 auto;
+    display: block;
     width: 250px;
     max-width: 80%;
   }
@@ -57,6 +60,7 @@
     text-shadow: none;
   }
 
+  /* Object list */
   .object-list {
     list-style: none;
     padding: 0;
@@ -81,12 +85,11 @@
 </head>
 <body>
 
-<div class="gradient-block">
+<div class="header-block">
   <h1>Deep-Sky Imaging</h1>
   <p>A growing archive of galaxies, nebulae, and faint detail captured under imperfect skies.</p>
+  <input type="text" id="search" placeholder="Search by object..." onkeyup="filterObjects()">
 </div>
-
-<input type="text" id="search" placeholder="Search by object..." onkeyup="filterObjects()">
 
 <ul class="object-list" id="objectList"></ul>
 
@@ -122,7 +125,7 @@
     const li = document.createElement('li');
     const link = document.createElement('a');
     link.textContent = `${obj.name} / ${obj.id}`; // Display: Name / ID
-    link.href = "#"; // Replace with actual page link later
+    link.href = "#"; // Replace with actual link to images later
     li.appendChild(link);
     li.dataset.object = obj.id.toLowerCase(); // searchable by ID
     li.dataset.name = obj.name.toLowerCase();  // searchable by name
