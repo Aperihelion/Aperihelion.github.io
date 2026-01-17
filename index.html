@@ -6,15 +6,28 @@
   <style>
     body {
       background: black;
-      color: white;
       font-family: Arial, sans-serif;
       text-align: center;
+    }
+
+    .gradient-text {
+      background: linear-gradient(to bottom, #8a2be2, #1e90ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    p {
+      max-width: 800px;
+      margin: 0 auto;
     }
   </style>
 </head>
 <body>
-  <h1>Deep-Sky Imaging</h1>
-  <p>A growing archive of galaxies, nebulae, and faint detail captured under imperfect skies.
-</p>
+  <h1 class="gradient-text">Deep-Sky Imaging</h1>
+
+  <p class="gradient-text">
+    A growing archive of galaxies, nebulae, and faint detail captured under imperfect skies.
+  </p>
 </body>
 </html>
