@@ -3,24 +3,43 @@
 <head>
   <meta charset="UTF-8">
   <title>Aph | Astrophotography</title>
+  <!-- Google Font: Orbitron -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
   <style>
+    /* Body styling */
     body {
       background: black;
-      font-family: Arial, sans-serif;
+      font-family: 'Orbitron', Arial, sans-serif;
       text-align: center;
+      margin: 0;
+      padding: 50px 20px;
+      color: white;
     }
 
+    /* Gradient block for H1 + P */
     .gradient-block {
       display: inline-block;
       background: linear-gradient(to bottom, #8a2be2, #1e90ff);
       -webkit-background-clip: text;
       background-clip: text;
       color: transparent;
+      text-shadow: 0 0 14px rgba(140, 100, 255, 0.25); /* subtle glow */
     }
 
+    /* H1 styling */
+    h1 {
+      font-weight: 900;
+      font-size: 3em;
+      margin-bottom: 0.2em;
+    }
+
+    /* Paragraph styling */
     p {
+      font-weight: 500;
+      font-size: 1.2em;
       max-width: 800px;
       margin: 0 auto;
+      line-height: 1.5em;
     }
   </style>
 </head>
@@ -28,9 +47,7 @@
 
   <div class="gradient-block">
     <h1>Deep-Sky Imaging</h1>
-    <p>
-      A growing archive of galaxies, nebulae, and faint detail captured under imperfect skies.
-    </p>
+    <p>A growing archive of galaxies, nebulae, and faint detail captured under imperfect skies.</p>
   </div>
 
 </body>
