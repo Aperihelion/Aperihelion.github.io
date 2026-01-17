@@ -93,26 +93,26 @@
 <script>
   // ====== OBJECT DATA ======
   const objects = [
-    { name: "Triangulum Galaxy", id: "m33" },
-    { name: "Pleiades", id: "m45" },
-    { name: "Double Cluster", id: "ngc869-884" },
-    { name: "Orion Nebula", id: "m42" },
-    { name: "NGC 1499 – California Nebula", id: "ngc1499" },
-    { name: "M81", id: "m81" },
-    { name: "NGC 2237 – Rosette/Flame Nebula", id: "ngc2237" },
-    { name: "Flame Nebula", id: "ngc2024" },
-    { name: "Horsehead Nebula", id: "ic434" },
-    { name: "M67", id: "m67" },
-    { name: "The Moon", id: "moon" },
-    { name: "The Sun", id: "sun" },
-    { name: "Heart Nebula", id: "ic1805" },
-    { name: "Bode's Trio", id: "m81-m82-n3077" },
-    { name: "Markarian's Chain", id: "markarian" },
-    { name: "NGC 1893", id: "ngc1893" },
-    { name: "Whirlpool Galaxy", id: "m51" },
-    { name: "NGC 2403", id: "ngc2403" },
-    { name: "Intergalactic Wanderer", id: "wanderer" },
-    { name: "Antennae Galaxies", id: "ngc4038-4039" }
+    { name: "Triangulum Galaxy", id: "M33" },
+    { name: "Pleiades", id: "M45" },
+    { name: "Double Cluster", id: "NGC869-884" },
+    { name: "Orion Nebula", id: "M42" },
+    { name: "NGC 1499 – California Nebula", id: "NGC1499" },
+    { name: "M81", id: "M81" },
+    { name: "NGC 2237 – Rosette/Flame Nebula", id: "NGC2237" },
+    { name: "Flame Nebula", id: "NGC2024" },
+    { name: "Horsehead Nebula", id: "IC434" },
+    { name: "M67", id: "M67" },
+    { name: "The Moon", id: "Moon" },
+    { name: "The Sun", id: "Sun" },
+    { name: "Heart Nebula", id: "IC1805" },
+    { name: "Bode's Trio", id: "M81-M82-N3077" },
+    { name: "Markarian's Chain", id: "Markarian" },
+    { name: "NGC 1893", id: "NGC1893" },
+    { name: "Whirlpool Galaxy", id: "M51" },
+    { name: "NGC 2403", id: "NGC2403" },
+    { name: "Intergalactic Wanderer", id: "Wanderer" },
+    { name: "Antennae Galaxies", id: "NGC4038-4039" }
   ];
 
   const objectList = document.getElementById('objectList');
@@ -121,23 +121,24 @@
   objects.forEach(obj => {
     const li = document.createElement('li');
     const link = document.createElement('a');
-    link.textContent = obj.name;
-    link.href = "#"; // replace with image page link later
+    link.textContent = `${obj.name} / ${obj.id}`; // Display: Name / ID
+    link.href = "#"; // Replace with actual page link later
     li.appendChild(link);
-    li.dataset.object = obj.id;
+    li.dataset.object = obj.id.toLowerCase(); // searchable by ID
+    li.dataset.name = obj.name.toLowerCase();  // searchable by name
     objectList.appendChild(li);
   });
 
-  // Search function
+  // Search function (by name OR id)
   function filterObjects() {
     const input = document.getElementById('search').value.toLowerCase();
     const listItems = document.querySelectorAll('.object-list li');
 
     listItems.forEach(li => {
-      if (li.dataset.object.includes(input) && input !== "") {
-        li.style.display = "block"; // show matching item
+      if (li.dataset.object.includes(input) || li.dataset.name.includes(input)) {
+        li.style.display = "block"; // show if matches name OR ID
       } else {
-        li.style.display = "none"; // hide non-matching
+        li.style.display = "none";  // hide otherwise
       }
     });
   }
