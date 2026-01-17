@@ -39,7 +39,23 @@
       line-height: 1.5em;
     }
 
-    /* Gallery styling */
+    #search {
+      padding: 10px 15px;
+      font-size: 1em;
+      border-radius: 5px;
+      border: 2px solid #8a2be2;
+      background-color: #111;
+      color: #8a2be2;
+      text-shadow: 0 0 5px #8a2be2;
+      margin-bottom: 30px;
+      width: 250px;
+      max-width: 80%;
+    }
+    #search::placeholder {
+      color: #888;
+      text-shadow: none;
+    }
+
     .gallery {
       display: flex;
       flex-wrap: wrap;
@@ -54,7 +70,7 @@
       height: auto;
       border-radius: 10px;
       box-shadow: 0 0 20px rgba(138, 43, 226, 0.5);
-      transition: transform 0.3s;
+      transition: transform 0.3s, box-shadow 0.3s;
     }
 
     .gallery img:hover {
@@ -62,15 +78,15 @@
       box-shadow: 0 0 25px rgba(30, 144, 255, 0.6);
     }
 
-    /* Search bar styling */
-    #search {
-      padding: 10px 15px;
-      font-size: 1em;
-      border-radius: 5px;
-      border: none;
-      margin-bottom: 30px;
-      width: 250px;
-      max-width: 80%;
+    .object-section {
+      margin-top: 50px;
+    }
+
+    .object-section h2 {
+      font-weight: 700;
+      font-size: 2em;
+      margin-bottom: 10px;
+      text-decoration: underline;
     }
   </style>
 </head>
@@ -82,28 +98,70 @@
     <p>A growing archive of galaxies, nebulae, and faint detail captured under imperfect skies.</p>
   </div>
 
-  <!-- Search bar -->
+  <!-- Search Bar -->
   <div>
     <input type="text" id="search" placeholder="Search by object..." onkeyup="filterGallery()">
   </div>
 
-  <!-- Gallery -->
-  <div class="gallery">
-    <img src="images/m33/Stacked_35_M_33_10.0s_IRCUT_20251225-203423.jpg" data-object="m33" alt="M33 – Triangulum Galaxy">
-  </div>
+  <!-- Gallery Container -->
+  <div id="gallery-container"></div>
 
   <script>
-    // Simple search/filter function
+    // ====== IMAGE DATA ======
+    const objects = [
+      { name: "Triangulum Galaxy", id: "m33", images: [] },
+      { name: "Pleiades", id: "m45", images: [] },
+      { name: "Double Cluster", id: "ngc869-884", images: [] },
+      { name: "Orion Nebula", id: "m42", images: [] },
+      { name: "NGC 1499 – California Nebula", id: "ngc1499", images: [] },
+      { name: "M81", id: "m81", images: [] },
+      { name: "NGC 2237 – Rosette/Flame Nebula", id: "ngc2237", images: [] },
+      { name: "Flame Nebula", id: "ngc2024", images: [] },
+      { name: "Horsehead Nebula", id: "ic434", images: [] },
+      { name: "M67", id: "m67", images: [] },
+      { name: "Moon", id: "moon", images: [] },
+      { name: "Sun", id: "sun", images: [] },
+      { name: "Heart Nebula", id: "ic1805", images: [] },
+      { name: "Bode's Trio", id: "m81-m82-n3077", images: [] },
+      { name: "Markarian's Chain", id: "markarian", images: [] },
+      { name: "NGC 1893", id: "ngc1893", images: [] },
+      { name: "Whirlpool Galaxy", id: "m51", images: [] },
+      { name: "NGC 2403", id: "ngc2403", images: [] },
+      { name: "Intergalactic Wanderer", id: "wanderer", images: [] },
+      { name: "Antennae Galaxies", id: "ngc4038-4039", images: [] }
+    ];
+
+    const galleryContainer = document.getElementById('gallery-container');
+
+    // ====== BUILD GALLERY ======
+    objects.forEach(obj => {
+      const section = document.createElement('div');
+      section.className = 'object-section';
+
+      const title = document.createElement('h2');
+      title.textContent = obj.name;
+      section.appendChild(title);
+
+      const galleryDiv = document.createElement('div');
+      galleryDiv.className = 'gallery';
+
+      obj.images.forEach(imgPath => {
+        const img = document.createElement('img');
+        img.src = imgPath;
+        img.alt = obj.name;
+        img.dataset.object = obj.id;
+        galleryDiv.appendChild(img);
+      });
+
+      section.appendChild(galleryDiv);
+      galleryContainer.appendChild(section);
+    });
+
+    // ====== SEARCH FUNCTION ======
     function filterGallery() {
       const input = document.getElementById('search').value.toLowerCase();
-      const images = document.querySelectorAll('.gallery img');
-      
-      images.forEach(img => {
-        if (img.dataset.object.includes(input)) {
-          img.style.display = '';
-        } else {
-          img.style.display = 'none';
-        }
+      document.querySelectorAll('.gallery img').forEach(img => {
+        img.style.display = img.dataset.object.includes(input) ? '' : 'none';
       });
     }
   </script>
