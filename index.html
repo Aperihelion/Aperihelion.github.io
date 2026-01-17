@@ -20,15 +20,18 @@
     margin-bottom: 30px;
   }
 
-  .header-block h1 {
+  .header-block h1, .header-block p {
     font-weight: 900;
-    font-size: 3em;
-    margin: 0.2em 0;
     background: linear-gradient(to bottom, #8a2be2, #1e90ff);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
     text-shadow: 0 0 8px rgba(138,43,226,0.4), 0 0 12px rgba(30,144,255,0.3);
+  }
+
+  .header-block h1 {
+    font-size: 3em;
+    margin: 0.2em 0;
   }
 
   .header-block p {
@@ -37,7 +40,6 @@
     max-width: 800px;
     margin: 0 auto 20px;
     line-height: 1.5em;
-    color: white;
   }
 
   /* Search bar */
@@ -100,18 +102,19 @@
     { name: "Pleiades", id: "M45" },
     { name: "Double Cluster", id: "NGC869-884" },
     { name: "Orion Nebula", id: "M42" },
-    { name: "NGC 1499 – California Nebula", id: "NGC1499" },
-    { name: "M81", id: "M81" },
-    { name: "NGC 2237 – Rosette/Flame Nebula", id: "NGC2237" },
+    { name: "California Nebula", id: "NGC1499" },
+    { name: "Bode's Galaxy", id: "M81" },
+    { name: "Cigar Galaxy", id: "M82" },
+    { name: "NGC 3077", id: "NGC3077" },
+    { name: "Rosette Nebula", id: "NGC2237" },
     { name: "Flame Nebula", id: "NGC2024" },
     { name: "Horsehead Nebula", id: "IC434" },
-    { name: "M67", id: "M67" },
+    { name: "King Cobra Cluster", id: "M67" },
     { name: "The Moon", id: "Moon" },
     { name: "The Sun", id: "Sun" },
     { name: "Heart Nebula", id: "IC1805" },
-    { name: "Bode's Trio", id: "M81-M82-N3077" },
     { name: "Markarian's Chain", id: "Markarian" },
-    { name: "NGC 1893", id: "NGC1893" },
+    { name: "Auriga Cluster", id: "NGC1893" },
     { name: "Whirlpool Galaxy", id: "M51" },
     { name: "NGC 2403", id: "NGC2403" },
     { name: "Intergalactic Wanderer", id: "NGC2419" },
@@ -124,11 +127,11 @@
   objects.forEach(obj => {
     const li = document.createElement('li');
     const link = document.createElement('a');
-    link.textContent = `${obj.name} / ${obj.id}`; // Display: Name / ID
-    link.href = "#"; // Replace with actual link to images later
+    link.textContent = `${obj.name} / ${obj.id}`;
+    link.href = "#"; // replace with actual link later
     li.appendChild(link);
-    li.dataset.object = obj.id.toLowerCase(); // searchable by ID
-    li.dataset.name = obj.name.toLowerCase();  // searchable by name
+    li.dataset.object = obj.id.toLowerCase();
+    li.dataset.name = obj.name.toLowerCase();
     objectList.appendChild(li);
   });
 
@@ -138,10 +141,10 @@
     const listItems = document.querySelectorAll('.object-list li');
 
     listItems.forEach(li => {
-      if (li.dataset.object.includes(input) || li.dataset.name.includes(input)) {
-        li.style.display = "block"; // show if matches name OR ID
+      if (input !== "" && (li.dataset.object.includes(input) || li.dataset.name.includes(input))) {
+        li.style.display = "block";
       } else {
-        li.style.display = "none";  // hide otherwise
+        li.style.display = "none"; // hide all if empty or no match
       }
     });
   }
