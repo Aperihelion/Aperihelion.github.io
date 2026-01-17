@@ -96,7 +96,6 @@
 <ul class="object-list" id="objectList"></ul>
 
 <script>
-  // ====== OBJECT DATA ======
   const objects = [
     { name: "Triangulum Galaxy", id: "M33" },
     { name: "Pleiades", id: "M45" },
@@ -123,28 +122,26 @@
 
   const objectList = document.getElementById('objectList');
 
-  // Populate list
   objects.forEach(obj => {
     const li = document.createElement('li');
     const link = document.createElement('a');
     link.textContent = `${obj.name} / ${obj.id}`;
-    link.href = "#"; // replace with actual link later
+    link.href = `images/${obj.id}/`; // points to folder
+    link.target = "_blank";          // open in new tab
     li.appendChild(link);
     li.dataset.object = obj.id.toLowerCase();
     li.dataset.name = obj.name.toLowerCase();
     objectList.appendChild(li);
   });
 
-  // Search function (by name OR id)
   function filterObjects() {
     const input = document.getElementById('search').value.toLowerCase();
     const listItems = document.querySelectorAll('.object-list li');
-
     listItems.forEach(li => {
       if (input !== "" && (li.dataset.object.includes(input) || li.dataset.name.includes(input))) {
         li.style.display = "block";
       } else {
-        li.style.display = "none"; // hide all if empty or no match
+        li.style.display = "none";
       }
     });
   }
