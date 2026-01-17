@@ -126,8 +126,7 @@
     const li = document.createElement('li');
     const link = document.createElement('a');
     link.textContent = `${obj.name} / ${obj.id}`;
-    link.href = `images/${obj.id}/`; // points to folder
-    link.target = "_blank";          // open in new tab
+    link.href = `images/${obj.id}/`; // same tab redirect
     li.appendChild(link);
     li.dataset.object = obj.id.toLowerCase();
     li.dataset.name = obj.name.toLowerCase();
